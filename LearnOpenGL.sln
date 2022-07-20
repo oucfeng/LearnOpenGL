@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ch1-Getting-Started", "ch1-
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch1-03-Hello-Window", "src\ch1-Getting-Started\ch1-03-Hello-Window\ch1-03-Hello-Window.vcxproj", "{D6BEEDE0-B119-4893-8EF1-C57456314420}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch1-04-Hello-Triangle", "src\ch1-Getting-Started\ch1-04-Hello-Triangle\ch1-04-Hello-Triangle.vcxproj", "{AEB6C389-A688-443D-9333-AD10B54AC418}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -23,12 +25,21 @@ Global
 		{D6BEEDE0-B119-4893-8EF1-C57456314420}.Release|x64.Build.0 = Release|x64
 		{D6BEEDE0-B119-4893-8EF1-C57456314420}.Release|x86.ActiveCfg = Release|Win32
 		{D6BEEDE0-B119-4893-8EF1-C57456314420}.Release|x86.Build.0 = Release|Win32
+		{AEB6C389-A688-443D-9333-AD10B54AC418}.Debug|x64.ActiveCfg = Debug|x64
+		{AEB6C389-A688-443D-9333-AD10B54AC418}.Debug|x64.Build.0 = Debug|x64
+		{AEB6C389-A688-443D-9333-AD10B54AC418}.Debug|x86.ActiveCfg = Debug|Win32
+		{AEB6C389-A688-443D-9333-AD10B54AC418}.Debug|x86.Build.0 = Debug|Win32
+		{AEB6C389-A688-443D-9333-AD10B54AC418}.Release|x64.ActiveCfg = Release|x64
+		{AEB6C389-A688-443D-9333-AD10B54AC418}.Release|x64.Build.0 = Release|x64
+		{AEB6C389-A688-443D-9333-AD10B54AC418}.Release|x86.ActiveCfg = Release|Win32
+		{AEB6C389-A688-443D-9333-AD10B54AC418}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D6BEEDE0-B119-4893-8EF1-C57456314420} = {96D8ABAB-8465-4ED0-97C3-AEDB4A682F1C}
+		{AEB6C389-A688-443D-9333-AD10B54AC418} = {96D8ABAB-8465-4ED0-97C3-AEDB4A682F1C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4F5A16C-1F0B-474D-BE6A-7BAFC241CEA9}
