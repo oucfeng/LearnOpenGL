@@ -24,10 +24,10 @@ int main()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 
     // 必须使用VAO渲染
-    //glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     // 渲染出纯VBO三角形
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
+    //glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
 
     // mac系统需要该设置
     //glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
@@ -139,11 +139,11 @@ int main()
     unsigned int EBO;
     glGenBuffers(1, &EBO);
 
-    //unsigned int VAO;
-    //glGenVertexArrays(1, &VAO);
+    unsigned int VAO;
+    glGenVertexArrays(1, &VAO);
 
-    //// 绑定VAO，接下来所有对VBO的设置都会保存到该VAO中
-    //glBindVertexArray(VAO);
+    // 绑定VAO，接下来所有对VBO的设置都会保存到该VAO中
+    glBindVertexArray(VAO);
 
     // 0. 复制顶点数组到缓冲中供OpenGL使用
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -158,7 +158,7 @@ int main()
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     // VAO 解绑
-    //glBindVertexArray(0);
+    glBindVertexArray(0);
 
     // render loop
     // -----------
@@ -172,14 +172,14 @@ int main()
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
+        // 线框模式
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
         // 当我们渲染一个物体时要使用着色器程序
         glUseProgram(shaderProgram);
-
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+        glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
-        //glBindVertexArray(VAO);
-        //glDrawArrays(GL_TRIANGLES, 0, 6);
         // glBindVertexArray(0); // no need to unbind it every time 
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
@@ -190,8 +190,9 @@ int main()
 
     // optional: de-allocate all resources once they've outlived their purpose:
     // ------------------------------------------------------------------------
-    //glDeleteVertexArrays(1, &VAO);
+    glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
+    glDeleteBuffers(1, &EBO);
     glDeleteProgram(shaderProgram);
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
