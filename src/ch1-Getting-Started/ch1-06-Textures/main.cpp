@@ -84,8 +84,11 @@ int main()
     unsigned int EBO;
     glGenBuffers(1, &EBO);
 
-    unsigned int texture;
-    glGenTextures(1, &texture);
+    unsigned int texture1;
+    glGenTextures(1, &texture1);
+
+    unsigned int texture2;
+    glGenTextures(1, &texture2);
 
     unsigned int VAO;
     glGenVertexArrays(1, &VAO);
@@ -111,12 +114,15 @@ int main()
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-    glBindTexture(GL_TEXTURE_2D, texture);
+    glBindTexture(GL_TEXTURE_2D, texture1);
     // 为当前绑定的纹理对象设置环绕、过滤方式
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    // tell stb_image.h to flip loaded texture's on the y-axis.
+    stbi_set_flip_vertically_on_load(true);
 
     int width, height, nrChannels;
     std::string texturePath = "../../../res/textures/container.jpg";
@@ -131,7 +137,30 @@ int main()
     }
     else
     {
-        std::cout << "Failed to load texture" << std::endl;
+        std::cout << "Failed to load texture1" << std::endl;
+    }
+    stbi_image_free(data);
+
+    glBindTexture(GL_TEXTURE_2D, texture2);
+    // 为当前绑定的纹理对象设置环绕、过滤方式
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    texturePath = "../../../res/textures/awesomeface.png";
+    data = stbi_load(texturePath.c_str(), &width, &height, &nrChannels, 0);
+
+    std::cout << "image info: " << width << ", " << height << std::endl;
+
+    if (data)
+    {
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+    }
+    else
+    {
+        std::cout << "Failed to load texture1" << std::endl;
     }
     stbi_image_free(data);
 
@@ -150,8 +179,11 @@ int main()
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        //glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture1);
+
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, texture2);
 
         // 当我们渲染一个物体时要使用着色器程序
         // 更新一个uniform之前你必须先使用程序（调用glUseProgram)，因为它是在当前激活的着色器程序中设置uniform的。
@@ -161,6 +193,8 @@ int main()
         float timeValue = glfwGetTime();
         float greenValue = sin(timeValue) / 2.0f + 0.5f;
         shader.set_uniform("globalColor", 0.0f, greenValue, 0.0f, 1.0f);
+        shader.set_uniform("globalTexture1", 0);
+        shader.set_uniform("globalTexture2", 1);
 
         glBindVertexArray(VAO);
         //glDrawArrays(GL_TRIANGLES, 0, 3);
@@ -179,7 +213,8 @@ int main()
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
     glDeleteBuffers(1, &EBO);
-    glDeleteTextures(1, &texture);
+    glDeleteTextures(1, &texture1);
+    glDeleteTextures(1, &texture2);
     shader.clear();
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
