@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch1-05-Shaders", "src\ch1-G
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch1-06-Textures", "src\ch1-Getting-Started\ch1-06-Textures\ch1-06-Textures.vcxproj", "{8AD0562F-F251-49F9-B0F2-CD9150492F6F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch1-07-Transformations", "src\ch1-Getting-Started\ch1-07-Transformations\ch1-07-Transformations.vcxproj", "{CA8F2E2D-B94F-4090-AADB-CCAF1584BE7A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -53,6 +55,14 @@ Global
 		{8AD0562F-F251-49F9-B0F2-CD9150492F6F}.Release|x64.Build.0 = Release|x64
 		{8AD0562F-F251-49F9-B0F2-CD9150492F6F}.Release|x86.ActiveCfg = Release|Win32
 		{8AD0562F-F251-49F9-B0F2-CD9150492F6F}.Release|x86.Build.0 = Release|Win32
+		{CA8F2E2D-B94F-4090-AADB-CCAF1584BE7A}.Debug|x64.ActiveCfg = Debug|x64
+		{CA8F2E2D-B94F-4090-AADB-CCAF1584BE7A}.Debug|x64.Build.0 = Debug|x64
+		{CA8F2E2D-B94F-4090-AADB-CCAF1584BE7A}.Debug|x86.ActiveCfg = Debug|Win32
+		{CA8F2E2D-B94F-4090-AADB-CCAF1584BE7A}.Debug|x86.Build.0 = Debug|Win32
+		{CA8F2E2D-B94F-4090-AADB-CCAF1584BE7A}.Release|x64.ActiveCfg = Release|x64
+		{CA8F2E2D-B94F-4090-AADB-CCAF1584BE7A}.Release|x64.Build.0 = Release|x64
+		{CA8F2E2D-B94F-4090-AADB-CCAF1584BE7A}.Release|x86.ActiveCfg = Release|Win32
+		{CA8F2E2D-B94F-4090-AADB-CCAF1584BE7A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +72,7 @@ Global
 		{AEB6C389-A688-443D-9333-AD10B54AC418} = {96D8ABAB-8465-4ED0-97C3-AEDB4A682F1C}
 		{3C7571B8-D40F-4BED-864B-DA5F0BC8F0CD} = {96D8ABAB-8465-4ED0-97C3-AEDB4A682F1C}
 		{8AD0562F-F251-49F9-B0F2-CD9150492F6F} = {96D8ABAB-8465-4ED0-97C3-AEDB4A682F1C}
+		{CA8F2E2D-B94F-4090-AADB-CCAF1584BE7A} = {96D8ABAB-8465-4ED0-97C3-AEDB4A682F1C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4F5A16C-1F0B-474D-BE6A-7BAFC241CEA9}
