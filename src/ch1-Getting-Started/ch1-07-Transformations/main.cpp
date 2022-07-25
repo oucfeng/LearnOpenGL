@@ -2,6 +2,10 @@
 #include <std/stb_image.h>
 #include "Shader.h"
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 using namespace std;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
@@ -195,6 +199,11 @@ int main()
         shader.set_uniform("globalColor", 0.0f, greenValue, 0.0f, 1.0f);
         shader.set_uniform("globalTexture1", 0);
         shader.set_uniform("globalTexture2", 1);
+
+        glm::mat4 trans = glm::mat4(1.0f);
+        trans = glm::translate(trans, glm::vec3(0.5f, -0.5f, 0));
+        trans = glm::rotate(trans, (float)glfwGetTime(), glm::vec3(0.0, 0.0, 1.0));
+        shader.set_uniform("transform", 1, GL_FALSE, glm::value_ptr(trans));
 
         glBindVertexArray(VAO);
         //glDrawArrays(GL_TRIANGLES, 0, 3);

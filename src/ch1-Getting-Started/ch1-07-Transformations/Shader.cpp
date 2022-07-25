@@ -109,6 +109,11 @@ void Shader::set_uniform(std::string name, float value1, float value2, float val
     glUniform4f(glGetUniformLocation(ID, name.c_str()), value1, value2, value3, value4);
 }
 
+void Shader::set_uniform(std::string name, int count, bool transpose, const float* value) const noexcept
+{
+    glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), count, transpose, value);
+}
+
 void Shader::clear()
 {
     glDeleteProgram(ID);
