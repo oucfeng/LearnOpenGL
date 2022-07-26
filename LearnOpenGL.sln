@@ -25,6 +25,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch2-01-Colors", "src\ch2-Li
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch2-02-Basic-Lighting", "src\ch2-Lighting\ch2-02-Basic-Lighting\ch2-02-Basic-Lighting.vcxproj", "{B2E6D006-3361-42CC-86F2-E4DEC732882E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch2-03-Materials", "src\ch2-Lighting\ch2-03-Materials\ch2-03-Materials.vcxproj", "{CBD7BF71-061A-403C-A1D7-EDC576282840}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -105,6 +107,14 @@ Global
 		{B2E6D006-3361-42CC-86F2-E4DEC732882E}.Release|x64.Build.0 = Release|x64
 		{B2E6D006-3361-42CC-86F2-E4DEC732882E}.Release|x86.ActiveCfg = Release|Win32
 		{B2E6D006-3361-42CC-86F2-E4DEC732882E}.Release|x86.Build.0 = Release|Win32
+		{CBD7BF71-061A-403C-A1D7-EDC576282840}.Debug|x64.ActiveCfg = Debug|x64
+		{CBD7BF71-061A-403C-A1D7-EDC576282840}.Debug|x64.Build.0 = Debug|x64
+		{CBD7BF71-061A-403C-A1D7-EDC576282840}.Debug|x86.ActiveCfg = Debug|Win32
+		{CBD7BF71-061A-403C-A1D7-EDC576282840}.Debug|x86.Build.0 = Debug|Win32
+		{CBD7BF71-061A-403C-A1D7-EDC576282840}.Release|x64.ActiveCfg = Release|x64
+		{CBD7BF71-061A-403C-A1D7-EDC576282840}.Release|x64.Build.0 = Release|x64
+		{CBD7BF71-061A-403C-A1D7-EDC576282840}.Release|x86.ActiveCfg = Release|Win32
+		{CBD7BF71-061A-403C-A1D7-EDC576282840}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -119,6 +129,7 @@ Global
 		{B9424879-8A75-4858-9394-AFA55C3F607E} = {96D8ABAB-8465-4ED0-97C3-AEDB4A682F1C}
 		{887E81E1-D8CA-46E9-B461-E6105F5A3F37} = {A14B99B2-E1F8-4DF9-B31A-1F3D2D2EFC47}
 		{B2E6D006-3361-42CC-86F2-E4DEC732882E} = {A14B99B2-E1F8-4DF9-B31A-1F3D2D2EFC47}
+		{CBD7BF71-061A-403C-A1D7-EDC576282840} = {A14B99B2-E1F8-4DF9-B31A-1F3D2D2EFC47}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4F5A16C-1F0B-474D-BE6A-7BAFC241CEA9}
