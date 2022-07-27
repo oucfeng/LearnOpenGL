@@ -258,7 +258,7 @@ int main()
         //lightColor.y = sin(glfwGetTime() * 0.7f);
         //lightColor.z = sin(glfwGetTime() * 1.3f);
 
-        lightShader.use();
+        /*lightShader.use();
 
         lightShader.set_uniform("model", 1, GL_FALSE, glm::value_ptr(model));
         lightShader.set_uniform("view", 1, GL_FALSE, glm::value_ptr(view));
@@ -267,7 +267,7 @@ int main()
         lightShader.set_uniform("lightColor", lightColor);
 
         glBindVertexArray(lightVAO);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        glDrawArrays(GL_TRIANGLES, 0, 36);*/
 
         //object start
         objectShader.use();
@@ -278,15 +278,13 @@ int main()
         glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f); // ΩµµÕ”∞œÏ
         glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f); // ‘Ÿ¥ŒΩµµÕ
 
-        objectShader.set_uniform("light.position", lightPos);
-        //objectShader.set_uniform("light.direction", -0.2f, -1.0f, -0.3f);
+        objectShader.set_uniform("light.position", camera.Position);
+        objectShader.set_uniform("light.direction", camera.Front);
+        objectShader.set_uniform("light.cutoff", glm::cos(glm::radians(12.5f)));
+        objectShader.set_uniform("light.outercutoff", glm::cos(glm::radians(17.5f)));
         objectShader.set_uniform("light.ambient", ambientColor);
         objectShader.set_uniform("light.diffuse", diffuseColor);
         objectShader.set_uniform("light.specular", 1.0f, 1.0f, 1.0f);
-
-        objectShader.set_uniform("light.constant", 1.0f);
-        objectShader.set_uniform("light.linear", 0.09f);
-        objectShader.set_uniform("light.quadratic", 0.032f);
 
         objectShader.set_uniform("material.diffuse", 0);
         objectShader.set_uniform("material.specular", 1);
