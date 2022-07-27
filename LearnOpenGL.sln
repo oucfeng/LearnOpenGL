@@ -33,6 +33,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch2-05-Light-Casters", "src
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch2-06-Multiple-Lights", "src\ch2-Lighting\ch2-06-Multiple-Lights\ch2-06-Multiple-Lights.vcxproj", "{7BC4BCA0-7599-4DB7-8138-09D71548FF16}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ch3-Model-Loading", "ch3-Model-Loading", "{FBF1E88B-631E-46C2-822D-0288BD8971BE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch3-01-Assimp", "src\ch3-Model-Loading\ch3-01-Assimp\ch3-01-Assimp.vcxproj", "{762AB458-BB8C-4A51-9D88-498DF1E94276}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -145,6 +149,14 @@ Global
 		{7BC4BCA0-7599-4DB7-8138-09D71548FF16}.Release|x64.Build.0 = Release|x64
 		{7BC4BCA0-7599-4DB7-8138-09D71548FF16}.Release|x86.ActiveCfg = Release|Win32
 		{7BC4BCA0-7599-4DB7-8138-09D71548FF16}.Release|x86.Build.0 = Release|Win32
+		{762AB458-BB8C-4A51-9D88-498DF1E94276}.Debug|x64.ActiveCfg = Debug|x64
+		{762AB458-BB8C-4A51-9D88-498DF1E94276}.Debug|x64.Build.0 = Debug|x64
+		{762AB458-BB8C-4A51-9D88-498DF1E94276}.Debug|x86.ActiveCfg = Debug|Win32
+		{762AB458-BB8C-4A51-9D88-498DF1E94276}.Debug|x86.Build.0 = Debug|Win32
+		{762AB458-BB8C-4A51-9D88-498DF1E94276}.Release|x64.ActiveCfg = Release|x64
+		{762AB458-BB8C-4A51-9D88-498DF1E94276}.Release|x64.Build.0 = Release|x64
+		{762AB458-BB8C-4A51-9D88-498DF1E94276}.Release|x86.ActiveCfg = Release|Win32
+		{762AB458-BB8C-4A51-9D88-498DF1E94276}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -163,6 +175,7 @@ Global
 		{F0454E7E-C89B-47CD-A542-0503B388B287} = {A14B99B2-E1F8-4DF9-B31A-1F3D2D2EFC47}
 		{0FB40205-2CD7-4C5A-8405-C7ADC17B8CE7} = {A14B99B2-E1F8-4DF9-B31A-1F3D2D2EFC47}
 		{7BC4BCA0-7599-4DB7-8138-09D71548FF16} = {A14B99B2-E1F8-4DF9-B31A-1F3D2D2EFC47}
+		{762AB458-BB8C-4A51-9D88-498DF1E94276} = {FBF1E88B-631E-46C2-822D-0288BD8971BE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4F5A16C-1F0B-474D-BE6A-7BAFC241CEA9}
