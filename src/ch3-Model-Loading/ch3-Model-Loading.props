@@ -15,7 +15,7 @@
       <AdditionalDependencies>assimp-vc143-mtd.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy $(SolutionDir)dll\*.dll $(OutDir) /a /F /I /Y /C</Command>
+      <Command>xcopy $(SolutionDir)dll\*.dll $(OutDir) /a /F /I /Y /C /D</Command>
     </PreBuildEvent>
     <PreBuildEvent>
       <Message>copy dll files.</Message>
