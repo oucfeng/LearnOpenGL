@@ -22,7 +22,7 @@ bool firstMouse = true;
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 
-//glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
+glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
 
 glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 6.0f);
 Camera camera(cameraPos);
@@ -244,11 +244,11 @@ int main()
         glm::mat4 projection = glm::mat4(1.0f);
 
         // change the light's position values over time (can be done anywhere in the render loop actually, but try to do it at least before using the light source positions)
-        //lightPos.x = sin(glfwGetTime()) * 2.0f;
-        //lightPos.y = sin(glfwGetTime() / 2.0f);
+        lightPos.x = sin(glfwGetTime()) * 3.0f;
+        lightPos.y = sin(glfwGetTime() / 2.0f);
 
-        //model = glm::translate(model, lightPos);
-        //model = glm::scale(model, glm::vec3(0.2f));
+        model = glm::translate(model, lightPos);
+        model = glm::scale(model, glm::vec3(0.2f));
         view = camera.GetViewMatrix();
         projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / SCR_HEIGHT, 1.0f, 100.0f);
 
@@ -258,16 +258,16 @@ int main()
         //lightColor.y = sin(glfwGetTime() * 0.7f);
         //lightColor.z = sin(glfwGetTime() * 1.3f);
 
-        //lightShader.use();
+        lightShader.use();
 
-        //lightShader.set_uniform("model", 1, GL_FALSE, glm::value_ptr(model));
-        //lightShader.set_uniform("view", 1, GL_FALSE, glm::value_ptr(view));
-        //lightShader.set_uniform("projection", 1, GL_FALSE, glm::value_ptr(projection));
+        lightShader.set_uniform("model", 1, GL_FALSE, glm::value_ptr(model));
+        lightShader.set_uniform("view", 1, GL_FALSE, glm::value_ptr(view));
+        lightShader.set_uniform("projection", 1, GL_FALSE, glm::value_ptr(projection));
 
-        //lightShader.set_uniform("lightColor", lightColor);
+        lightShader.set_uniform("lightColor", lightColor);
 
-        //glBindVertexArray(lightVAO);
-        //glDrawArrays(GL_TRIANGLES, 0, 36);
+        glBindVertexArray(lightVAO);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
 
         //object start
         objectShader.use();
@@ -278,11 +278,15 @@ int main()
         glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f); // ΩµµÕ”∞œÏ
         glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f); // ‘Ÿ¥ŒΩµµÕ
 
-        //objectShader.set_uniform("light.position", lightPos);
-        objectShader.set_uniform("light.direction", -0.2f, -1.0f, -0.3f);
+        objectShader.set_uniform("light.position", lightPos);
+        //objectShader.set_uniform("light.direction", -0.2f, -1.0f, -0.3f);
         objectShader.set_uniform("light.ambient", ambientColor);
         objectShader.set_uniform("light.diffuse", diffuseColor);
         objectShader.set_uniform("light.specular", 1.0f, 1.0f, 1.0f);
+
+        objectShader.set_uniform("light.constant", 1.0f);
+        objectShader.set_uniform("light.linear", 0.09f);
+        objectShader.set_uniform("light.quadratic", 0.032f);
 
         objectShader.set_uniform("material.diffuse", 0);
         objectShader.set_uniform("material.specular", 1);
