@@ -29,6 +29,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch2-03-Materials", "src\ch2
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch2-04-Lighting-Maps", "src\ch2-Lighting\ch2-04-Lighting-Maps\ch2-04-Lighting-Maps.vcxproj", "{F0454E7E-C89B-47CD-A542-0503B388B287}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch2-05-Light-Casters", "src\ch2-Lighting\ch2-05-Light-Casters\ch2-05-Light-Casters.vcxproj", "{0FB40205-2CD7-4C5A-8405-C7ADC17B8CE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -125,6 +127,14 @@ Global
 		{F0454E7E-C89B-47CD-A542-0503B388B287}.Release|x64.Build.0 = Release|x64
 		{F0454E7E-C89B-47CD-A542-0503B388B287}.Release|x86.ActiveCfg = Release|Win32
 		{F0454E7E-C89B-47CD-A542-0503B388B287}.Release|x86.Build.0 = Release|Win32
+		{0FB40205-2CD7-4C5A-8405-C7ADC17B8CE7}.Debug|x64.ActiveCfg = Debug|x64
+		{0FB40205-2CD7-4C5A-8405-C7ADC17B8CE7}.Debug|x64.Build.0 = Debug|x64
+		{0FB40205-2CD7-4C5A-8405-C7ADC17B8CE7}.Debug|x86.ActiveCfg = Debug|Win32
+		{0FB40205-2CD7-4C5A-8405-C7ADC17B8CE7}.Debug|x86.Build.0 = Debug|Win32
+		{0FB40205-2CD7-4C5A-8405-C7ADC17B8CE7}.Release|x64.ActiveCfg = Release|x64
+		{0FB40205-2CD7-4C5A-8405-C7ADC17B8CE7}.Release|x64.Build.0 = Release|x64
+		{0FB40205-2CD7-4C5A-8405-C7ADC17B8CE7}.Release|x86.ActiveCfg = Release|Win32
+		{0FB40205-2CD7-4C5A-8405-C7ADC17B8CE7}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -141,6 +151,7 @@ Global
 		{B2E6D006-3361-42CC-86F2-E4DEC732882E} = {A14B99B2-E1F8-4DF9-B31A-1F3D2D2EFC47}
 		{CBD7BF71-061A-403C-A1D7-EDC576282840} = {A14B99B2-E1F8-4DF9-B31A-1F3D2D2EFC47}
 		{F0454E7E-C89B-47CD-A542-0503B388B287} = {A14B99B2-E1F8-4DF9-B31A-1F3D2D2EFC47}
+		{0FB40205-2CD7-4C5A-8405-C7ADC17B8CE7} = {A14B99B2-E1F8-4DF9-B31A-1F3D2D2EFC47}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4F5A16C-1F0B-474D-BE6A-7BAFC241CEA9}
