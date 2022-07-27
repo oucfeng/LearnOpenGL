@@ -31,6 +31,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch2-04-Lighting-Maps", "src
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch2-05-Light-Casters", "src\ch2-Lighting\ch2-05-Light-Casters\ch2-05-Light-Casters.vcxproj", "{0FB40205-2CD7-4C5A-8405-C7ADC17B8CE7}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch2-06-Multiple-Lights", "src\ch2-Lighting\ch2-06-Multiple-Lights\ch2-06-Multiple-Lights.vcxproj", "{7BC4BCA0-7599-4DB7-8138-09D71548FF16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -135,6 +137,14 @@ Global
 		{0FB40205-2CD7-4C5A-8405-C7ADC17B8CE7}.Release|x64.Build.0 = Release|x64
 		{0FB40205-2CD7-4C5A-8405-C7ADC17B8CE7}.Release|x86.ActiveCfg = Release|Win32
 		{0FB40205-2CD7-4C5A-8405-C7ADC17B8CE7}.Release|x86.Build.0 = Release|Win32
+		{7BC4BCA0-7599-4DB7-8138-09D71548FF16}.Debug|x64.ActiveCfg = Debug|x64
+		{7BC4BCA0-7599-4DB7-8138-09D71548FF16}.Debug|x64.Build.0 = Debug|x64
+		{7BC4BCA0-7599-4DB7-8138-09D71548FF16}.Debug|x86.ActiveCfg = Debug|Win32
+		{7BC4BCA0-7599-4DB7-8138-09D71548FF16}.Debug|x86.Build.0 = Debug|Win32
+		{7BC4BCA0-7599-4DB7-8138-09D71548FF16}.Release|x64.ActiveCfg = Release|x64
+		{7BC4BCA0-7599-4DB7-8138-09D71548FF16}.Release|x64.Build.0 = Release|x64
+		{7BC4BCA0-7599-4DB7-8138-09D71548FF16}.Release|x86.ActiveCfg = Release|Win32
+		{7BC4BCA0-7599-4DB7-8138-09D71548FF16}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -152,6 +162,7 @@ Global
 		{CBD7BF71-061A-403C-A1D7-EDC576282840} = {A14B99B2-E1F8-4DF9-B31A-1F3D2D2EFC47}
 		{F0454E7E-C89B-47CD-A542-0503B388B287} = {A14B99B2-E1F8-4DF9-B31A-1F3D2D2EFC47}
 		{0FB40205-2CD7-4C5A-8405-C7ADC17B8CE7} = {A14B99B2-E1F8-4DF9-B31A-1F3D2D2EFC47}
+		{7BC4BCA0-7599-4DB7-8138-09D71548FF16} = {A14B99B2-E1F8-4DF9-B31A-1F3D2D2EFC47}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4F5A16C-1F0B-474D-BE6A-7BAFC241CEA9}
