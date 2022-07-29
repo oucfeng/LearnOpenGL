@@ -7,6 +7,7 @@
 #include <std/stb_image.h>
 
 #include "Camera.h"
+#include <map>
 
 using namespace std;
 
@@ -182,12 +183,16 @@ int main()
         1.0f,  0.5f,  0.0f,  1.0f,  0.0f
     };
 
-    vector<glm::vec3> vegetation;
-    vegetation.push_back(glm::vec3(-1.5f, 0.0f, -0.48f));
-    vegetation.push_back(glm::vec3(1.5f, 0.0f, 0.51f));
-    vegetation.push_back(glm::vec3(0.0f, 0.0f, 0.7f));
-    vegetation.push_back(glm::vec3(-0.3f, 0.0f, -2.3f));
-    vegetation.push_back(glm::vec3(0.5f, 0.0f, -0.6f));
+    // transparent window locations
+    // --------------------------------
+    vector<glm::vec3> windows
+    {
+        glm::vec3(-1.5f, 0.0f, -0.48f),
+        glm::vec3(1.5f, 0.0f, 0.51f),
+        glm::vec3(0.0f, 0.0f, 0.7f),
+        glm::vec3(-0.3f, 0.0f, -2.3f),
+        glm::vec3(0.5f, 0.0f, -0.6f)
+    };
     
     unsigned int cubeVAO, planeVAO, grassVAO;
     glGenVertexArrays(1, &cubeVAO);
@@ -245,6 +250,7 @@ int main()
     Shader objectShader("shaders/object_vertex.glsl", "shaders/object_fragment.glsl");
     Shader outlineShader("shaders/outline_vertex.glsl", "shaders/outline_fragment.glsl");
     Shader grassShader("shaders/grass_vertex.glsl", "shaders/grass_fragment.glsl");
+    Shader windowShader("shaders/window_vertex.glsl", "shaders/window_fragment.glsl");
 
     // load textures
     // -------------
@@ -254,13 +260,17 @@ int main()
     unsigned int floorTexture = loadTexture(floorPath.c_str());
     std::string grassPath = "../../../res/textures/grass.png";
     unsigned int grassTexture = loadTexture(grassPath.c_str());
+    std::string windowPath = "../../../res/textures/blending_transparent_window.png";
+    unsigned int windowTexture = loadTexture(windowPath.c_str());
 
     glEnable(GL_STENCIL_TEST);
     glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
 
     glEnable(GL_DEPTH_TEST);
-    //glDepthFunc(GL_ALWAYS);
     glDepthFunc(GL_LESS);
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     // render loop
     // -----------
@@ -346,23 +356,28 @@ int main()
         glStencilMask(0xFF); //开启深度写入
 
         //grass
-        grassShader.use();
-        grassShader.set_uniform("view", 1, GL_FALSE, glm::value_ptr(view));
-        grassShader.set_uniform("projection", 1, GL_FALSE, glm::value_ptr(projection));
+        windowShader.use();
+        windowShader.set_uniform("view", 1, GL_FALSE, glm::value_ptr(view));
+        windowShader.set_uniform("projection", 1, GL_FALSE, glm::value_ptr(projection));
 
         glBindVertexArray(grassVAO);
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, grassTexture);
+        glBindTexture(GL_TEXTURE_2D, windowTexture);
 
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-        for (int i = 0; i < vegetation.size(); i++)
+        std::map<float, glm::vec3> sorted;
+        for (unsigned int i = 0; i < windows.size(); i++)
         {
-            auto pos = vegetation[i];
+            float distance = glm::length(camera.Position - windows[i]);
+            sorted[distance] = windows[i];
+        }
+        for (std::map<float, glm::vec3>::reverse_iterator it = sorted.rbegin(); it != sorted.rend(); ++it)
+        {
             model = glm::mat4(1.0f);
-            model = glm::translate(model, pos);
-            grassShader.set_uniform("model", 1, GL_FALSE, glm::value_ptr(model));
+            model = glm::translate(model, it->second);
+            windowShader.set_uniform("model", 1, GL_FALSE, glm::value_ptr(model));
             glDrawArrays(GL_TRIANGLES, 0, 6);
         }
 
@@ -385,6 +400,7 @@ int main()
     glDeleteTextures(1, &cubeTexture);
     glDeleteTextures(1, &floorTexture);
     glDeleteTextures(1, &grassTexture);
+    glDeleteTextures(1, &windowTexture);
     objectShader.clear();
     outlineShader.clear();
     grassShader.clear();

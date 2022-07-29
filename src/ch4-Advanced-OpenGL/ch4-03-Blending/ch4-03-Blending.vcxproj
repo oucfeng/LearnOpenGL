@@ -150,6 +150,8 @@
     <None Include="shaders\object_vertex.glsl" />
     <None Include="shaders\outline_fragment.glsl" />
     <None Include="shaders\outline_vertex.glsl" />
+    <None Include="shaders\window_fragment.glsl" />
+    <None Include="shaders\window_vertex.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
