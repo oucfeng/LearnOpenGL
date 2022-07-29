@@ -47,6 +47,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4-01-Depth-Testing", "src
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4-02-Stencil-Testing", "src\ch4-Advanced-OpenGL\ch4-02-Stencil-Testing\ch4-02-Stencil-Testing.vcxproj", "{7B1113F8-C2F7-4D45-B403-9CC9EDCFA7DE}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4-03-Blending", "src\ch4-Advanced-OpenGL\ch4-03-Blending\ch4-03-Blending.vcxproj", "{9C88D9ED-2219-4C5D-A140-B22E0BE18250}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -199,6 +201,14 @@ Global
 		{7B1113F8-C2F7-4D45-B403-9CC9EDCFA7DE}.Release|x64.Build.0 = Release|x64
 		{7B1113F8-C2F7-4D45-B403-9CC9EDCFA7DE}.Release|x86.ActiveCfg = Release|Win32
 		{7B1113F8-C2F7-4D45-B403-9CC9EDCFA7DE}.Release|x86.Build.0 = Release|Win32
+		{9C88D9ED-2219-4C5D-A140-B22E0BE18250}.Debug|x64.ActiveCfg = Debug|x64
+		{9C88D9ED-2219-4C5D-A140-B22E0BE18250}.Debug|x64.Build.0 = Debug|x64
+		{9C88D9ED-2219-4C5D-A140-B22E0BE18250}.Debug|x86.ActiveCfg = Debug|Win32
+		{9C88D9ED-2219-4C5D-A140-B22E0BE18250}.Debug|x86.Build.0 = Debug|Win32
+		{9C88D9ED-2219-4C5D-A140-B22E0BE18250}.Release|x64.ActiveCfg = Release|x64
+		{9C88D9ED-2219-4C5D-A140-B22E0BE18250}.Release|x64.Build.0 = Release|x64
+		{9C88D9ED-2219-4C5D-A140-B22E0BE18250}.Release|x86.ActiveCfg = Release|Win32
+		{9C88D9ED-2219-4C5D-A140-B22E0BE18250}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -222,6 +232,7 @@ Global
 		{2B04458E-AEA7-4CBE-8476-A18D5B21FE50} = {FBF1E88B-631E-46C2-822D-0288BD8971BE}
 		{490B155A-6F18-43C0-A70E-429D4FA1A7F3} = {3EEABEC3-EC4E-4E9F-A4CE-754B39D0299C}
 		{7B1113F8-C2F7-4D45-B403-9CC9EDCFA7DE} = {3EEABEC3-EC4E-4E9F-A4CE-754B39D0299C}
+		{9C88D9ED-2219-4C5D-A140-B22E0BE18250} = {3EEABEC3-EC4E-4E9F-A4CE-754B39D0299C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4F5A16C-1F0B-474D-BE6A-7BAFC241CEA9}
