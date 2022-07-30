@@ -272,7 +272,7 @@ int main()
 
     // load textures
     // -------------
-    std::string cubePath = "../../../res/textures/marble.jpg";
+    std::string cubePath = "../../../res/textures/container.jpg";
     unsigned int cubeTexture = loadTexture(cubePath.c_str());
     std::string floorPath = "../../../res/textures/metal.png";
     unsigned int floorTexture = loadTexture(floorPath.c_str());
@@ -344,7 +344,7 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT);
 
         screenShader.use();
-        screenShader.set_uniform("texture1", 0);
+        screenShader.set_uniform("screenTexture", 0);
         glBindVertexArray(quadVAO);
         glBindTexture(GL_TEXTURE_2D, texColorBuffer);
         //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); //Ïß¿òÄ£Ê½
