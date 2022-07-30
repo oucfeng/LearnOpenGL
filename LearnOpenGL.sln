@@ -51,6 +51,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4-03-Blending", "src\ch4-
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4-04-Face-Culling", "src\ch4-Advanced-OpenGL\ch4-04-Face-Culling\ch4-04-Face-Culling.vcxproj", "{D89F3040-0AA3-4B9F-826C-BF8EB6FC92D9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4-05-Framebuffers", "src\ch4-Advanced-OpenGL\ch4-05-Framebuffers\ch4-05-Framebuffers.vcxproj", "{C4541D45-60B1-4580-A6C9-3F8E1893A72E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -219,6 +221,14 @@ Global
 		{D89F3040-0AA3-4B9F-826C-BF8EB6FC92D9}.Release|x64.Build.0 = Release|x64
 		{D89F3040-0AA3-4B9F-826C-BF8EB6FC92D9}.Release|x86.ActiveCfg = Release|Win32
 		{D89F3040-0AA3-4B9F-826C-BF8EB6FC92D9}.Release|x86.Build.0 = Release|Win32
+		{C4541D45-60B1-4580-A6C9-3F8E1893A72E}.Debug|x64.ActiveCfg = Debug|x64
+		{C4541D45-60B1-4580-A6C9-3F8E1893A72E}.Debug|x64.Build.0 = Debug|x64
+		{C4541D45-60B1-4580-A6C9-3F8E1893A72E}.Debug|x86.ActiveCfg = Debug|Win32
+		{C4541D45-60B1-4580-A6C9-3F8E1893A72E}.Debug|x86.Build.0 = Debug|Win32
+		{C4541D45-60B1-4580-A6C9-3F8E1893A72E}.Release|x64.ActiveCfg = Release|x64
+		{C4541D45-60B1-4580-A6C9-3F8E1893A72E}.Release|x64.Build.0 = Release|x64
+		{C4541D45-60B1-4580-A6C9-3F8E1893A72E}.Release|x86.ActiveCfg = Release|Win32
+		{C4541D45-60B1-4580-A6C9-3F8E1893A72E}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -244,6 +254,7 @@ Global
 		{7B1113F8-C2F7-4D45-B403-9CC9EDCFA7DE} = {3EEABEC3-EC4E-4E9F-A4CE-754B39D0299C}
 		{9C88D9ED-2219-4C5D-A140-B22E0BE18250} = {3EEABEC3-EC4E-4E9F-A4CE-754B39D0299C}
 		{D89F3040-0AA3-4B9F-826C-BF8EB6FC92D9} = {3EEABEC3-EC4E-4E9F-A4CE-754B39D0299C}
+		{C4541D45-60B1-4580-A6C9-3F8E1893A72E} = {3EEABEC3-EC4E-4E9F-A4CE-754B39D0299C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4F5A16C-1F0B-474D-BE6A-7BAFC241CEA9}
