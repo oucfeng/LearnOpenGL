@@ -19,10 +19,10 @@ vec2 offsets[9] = vec2[](
     vec2( offset, -offset)  // сроб
 );
 
-float kernal[9] = float[](
-    -1, -1, -1,
-    -1,  9, -1,
-    -1, -1, -1
+float kernel[9] = float[](
+    1.0 / 16, 2.0 / 16, 1.0 / 16,
+    2.0 / 16, 4.0 / 16, 2.0 / 16,
+    1.0 / 16, 2.0 / 16, 1.0 / 16  
 );
 
 void main()
@@ -36,7 +36,7 @@ void main()
     vec3 color = vec3(0.0);
     for (int i = 0; i < 9; i++)
     {
-        color += sampleTex[i] * kernal[i];
+        color += sampleTex[i] * kernel[i];
     }
 
     FragColor = vec4(color, 1.0f);
