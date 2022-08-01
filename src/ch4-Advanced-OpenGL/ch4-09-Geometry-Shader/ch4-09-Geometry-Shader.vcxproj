@@ -147,6 +147,8 @@
     <None Include="shaders\geometry_shader.glsl" />
     <None Include="shaders\model_fragment.glsl" />
     <None Include="shaders\model_vertex.glsl" />
+    <None Include="shaders\normal_fragment.glsl" />
+    <None Include="shaders\normal_vertex.glsl" />
     <None Include="shaders\object_fragment.glsl" />
     <None Include="shaders\object_vertex.glsl" />
   </ItemGroup>

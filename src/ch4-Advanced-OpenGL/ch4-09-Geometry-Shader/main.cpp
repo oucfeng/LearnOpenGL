@@ -142,7 +142,9 @@ int main()
     glBindVertexArray(0);
 
     Shader modelShader("shaders/model_vertex.glsl", "shaders/model_fragment.glsl");
-    modelShader.load_geometry_shader("shaders/geometry_shader.glsl"); //加载几何着色器
+
+    Shader normalShader("shaders/normal_vertex.glsl", "shaders/normal_fragment.glsl");
+    normalShader.load_geometry_shader("shaders/geometry_shader.glsl"); //加载几何着色器
 
     std::string modelPath = "../../../res/models/nanosuit/nanosuit.obj";
     Model sceneModel(modelPath.c_str());
@@ -181,17 +183,19 @@ int main()
         //lightColor.z = sin(glfwGetTime() * 1.3f);
 
         modelShader.use();
-        modelShader.set_uniform("time", static_cast<float>(glfwGetTime()));
-
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(0.0f, -2.2f, 1.0f)); // translate it down so it's at the center of the scene
-        model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));	// it's a bit too big for our scene, so scale it down
+        model = glm::translate(model, glm::vec3(0.0f, -2.4f, 1.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));	// it's a bit too big for our scene, so scale it down
         modelShader.set_uniform("model", 1, GL_FALSE, glm::value_ptr(model));
         modelShader.set_uniform("view", 1, GL_FALSE, glm::value_ptr(view));
         modelShader.set_uniform("projection", 1, GL_FALSE, glm::value_ptr(projection));
         sceneModel.Draw(modelShader);
 
-        // glBindVertexArray(0); // no need to unbind it every time 
+        normalShader.use();
+        normalShader.set_uniform("model", 1, GL_FALSE, glm::value_ptr(model));
+        normalShader.set_uniform("view", 1, GL_FALSE, glm::value_ptr(view));
+        normalShader.set_uniform("projection", 1, GL_FALSE, glm::value_ptr(projection));
+        sceneModel.Draw(normalShader);
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
@@ -203,6 +207,7 @@ int main()
     // ------------------------------------------------------------------------
 
     modelShader.clear();
+    normalShader.clear();
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------
