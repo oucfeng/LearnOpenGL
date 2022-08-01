@@ -55,6 +55,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4-05-Framebuffers", "src\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4-06-Cubemaps", "src\ch4-Advanced-OpenGL\ch4-06-Cubemaps\ch4-06-Cubemaps.vcxproj", "{3AC48840-F580-424E-A994-1B8620635B75}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4-07-Advanced-Data", "src\ch4-Advanced-OpenGL\ch4-07-Advanced-Data\ch4-07-Advanced-Data.vcxproj", "{686C2A02-1E6C-4947-A7F7-4F0082DCC77A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -239,6 +241,14 @@ Global
 		{3AC48840-F580-424E-A994-1B8620635B75}.Release|x64.Build.0 = Release|x64
 		{3AC48840-F580-424E-A994-1B8620635B75}.Release|x86.ActiveCfg = Release|Win32
 		{3AC48840-F580-424E-A994-1B8620635B75}.Release|x86.Build.0 = Release|Win32
+		{686C2A02-1E6C-4947-A7F7-4F0082DCC77A}.Debug|x64.ActiveCfg = Debug|x64
+		{686C2A02-1E6C-4947-A7F7-4F0082DCC77A}.Debug|x64.Build.0 = Debug|x64
+		{686C2A02-1E6C-4947-A7F7-4F0082DCC77A}.Debug|x86.ActiveCfg = Debug|Win32
+		{686C2A02-1E6C-4947-A7F7-4F0082DCC77A}.Debug|x86.Build.0 = Debug|Win32
+		{686C2A02-1E6C-4947-A7F7-4F0082DCC77A}.Release|x64.ActiveCfg = Release|x64
+		{686C2A02-1E6C-4947-A7F7-4F0082DCC77A}.Release|x64.Build.0 = Release|x64
+		{686C2A02-1E6C-4947-A7F7-4F0082DCC77A}.Release|x86.ActiveCfg = Release|Win32
+		{686C2A02-1E6C-4947-A7F7-4F0082DCC77A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -266,6 +276,7 @@ Global
 		{D89F3040-0AA3-4B9F-826C-BF8EB6FC92D9} = {3EEABEC3-EC4E-4E9F-A4CE-754B39D0299C}
 		{C4541D45-60B1-4580-A6C9-3F8E1893A72E} = {3EEABEC3-EC4E-4E9F-A4CE-754B39D0299C}
 		{3AC48840-F580-424E-A994-1B8620635B75} = {3EEABEC3-EC4E-4E9F-A4CE-754B39D0299C}
+		{686C2A02-1E6C-4947-A7F7-4F0082DCC77A} = {3EEABEC3-EC4E-4E9F-A4CE-754B39D0299C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4F5A16C-1F0B-474D-BE6A-7BAFC241CEA9}
