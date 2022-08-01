@@ -289,6 +289,9 @@ int main()
     };
     unsigned int cubemapTexture = loadCubemap(faces);
 
+    std::string modelPath = "../../../res/models/nanosuit/nanosuit.obj";
+    Model sceneModel(modelPath.c_str());
+
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LEQUAL);
 
@@ -341,6 +344,12 @@ int main()
         model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
         objectShader.set_uniform("model", 1, GL_FALSE, glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 36);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(0.0f, -2.0f, 1.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));	// it's a bit too big for our scene, so scale it down
+        objectShader.set_uniform("model", 1, GL_FALSE, glm::value_ptr(model));
+        sceneModel.Draw(objectShader);
 
         //plane
         //glBindVertexArray(planeVAO);
