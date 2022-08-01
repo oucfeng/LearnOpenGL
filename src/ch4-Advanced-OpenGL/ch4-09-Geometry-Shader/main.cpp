@@ -141,11 +141,13 @@ int main()
     // VAO 解绑
     glBindVertexArray(0);
 
-    // VAO 解绑
-    glBindVertexArray(0);
+    Shader modelShader("shaders/model_vertex.glsl", "shaders/model_fragment.glsl");
+    modelShader.load_geometry_shader("shaders/geometry_shader.glsl"); //加载几何着色器
 
-    Shader objectShader("shaders/object_vertex.glsl", "shaders/object_fragment.glsl");
-    objectShader.load_geometry_shader("shaders/geometry_shader.glsl"); //加载几何着色器
+    std::string modelPath = "../../../res/models/nanosuit/nanosuit.obj";
+    Model sceneModel(modelPath.c_str());
+
+    glEnable(GL_DEPTH_TEST);
 
     //common values
     glm::mat4 model = glm::mat4(1.0f);
@@ -178,17 +180,16 @@ int main()
         //lightColor.y = sin(glfwGetTime() * 0.7f);
         //lightColor.z = sin(glfwGetTime() * 1.3f);
 
-        objectShader.use();
-
-        //cube1
-        glBindVertexArray(VAO);
+        modelShader.use();
+        modelShader.set_uniform("time", static_cast<float>(glfwGetTime()));
 
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(-0.75f, 0.75f, 0.0f));  // 移动到左上角
-        objectShader.set_uniform("model", 1, GL_FALSE, glm::value_ptr(model));
-        objectShader.set_uniform("view", 1, GL_FALSE, glm::value_ptr(view));
-        objectShader.set_uniform("projection", 1, GL_FALSE, glm::value_ptr(projection));
-        glDrawArrays(GL_POINTS, 0, 4);
+        model = glm::translate(model, glm::vec3(0.0f, -2.2f, 1.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));	// it's a bit too big for our scene, so scale it down
+        modelShader.set_uniform("model", 1, GL_FALSE, glm::value_ptr(model));
+        modelShader.set_uniform("view", 1, GL_FALSE, glm::value_ptr(view));
+        modelShader.set_uniform("projection", 1, GL_FALSE, glm::value_ptr(projection));
+        sceneModel.Draw(modelShader);
 
         // glBindVertexArray(0); // no need to unbind it every time 
 
@@ -200,9 +201,8 @@ int main()
 
     // optional: de-allocate all resources once they've outlived their purpose:
     // ------------------------------------------------------------------------
-    glDeleteVertexArrays(1, &VAO);
-    glDeleteBuffers(1, &VBO);
-    objectShader.clear();
+
+    modelShader.clear();
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------

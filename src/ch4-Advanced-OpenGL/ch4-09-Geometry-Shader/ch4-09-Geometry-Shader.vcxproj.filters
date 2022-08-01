@@ -58,5 +58,11 @@
     <None Include="shaders\geometry_shader.glsl">
       <Filter>资源文件</Filter>
     </None>
+    <None Include="shaders\model_vertex.glsl">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="shaders\model_fragment.glsl">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
 </Project>
