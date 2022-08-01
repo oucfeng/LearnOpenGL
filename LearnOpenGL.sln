@@ -59,6 +59,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4-07-Advanced-Data", "src
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4-08-Advanced-GLSL", "src\ch4-Advanced-OpenGL\ch4-08-Advanced-GLSL\ch4-08-Advanced-GLSL.vcxproj", "{BDEFA0DA-7694-4A43-A24D-0CE33262BE34}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4-09-Geometry-Shader", "src\ch4-Advanced-OpenGL\ch4-09-Geometry-Shader\ch4-09-Geometry-Shader.vcxproj", "{3CAC70BD-2287-400E-89D7-24B526D84C27}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -259,6 +261,14 @@ Global
 		{BDEFA0DA-7694-4A43-A24D-0CE33262BE34}.Release|x64.Build.0 = Release|x64
 		{BDEFA0DA-7694-4A43-A24D-0CE33262BE34}.Release|x86.ActiveCfg = Release|Win32
 		{BDEFA0DA-7694-4A43-A24D-0CE33262BE34}.Release|x86.Build.0 = Release|Win32
+		{3CAC70BD-2287-400E-89D7-24B526D84C27}.Debug|x64.ActiveCfg = Debug|x64
+		{3CAC70BD-2287-400E-89D7-24B526D84C27}.Debug|x64.Build.0 = Debug|x64
+		{3CAC70BD-2287-400E-89D7-24B526D84C27}.Debug|x86.ActiveCfg = Debug|Win32
+		{3CAC70BD-2287-400E-89D7-24B526D84C27}.Debug|x86.Build.0 = Debug|Win32
+		{3CAC70BD-2287-400E-89D7-24B526D84C27}.Release|x64.ActiveCfg = Release|x64
+		{3CAC70BD-2287-400E-89D7-24B526D84C27}.Release|x64.Build.0 = Release|x64
+		{3CAC70BD-2287-400E-89D7-24B526D84C27}.Release|x86.ActiveCfg = Release|Win32
+		{3CAC70BD-2287-400E-89D7-24B526D84C27}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -288,6 +298,7 @@ Global
 		{3AC48840-F580-424E-A994-1B8620635B75} = {3EEABEC3-EC4E-4E9F-A4CE-754B39D0299C}
 		{686C2A02-1E6C-4947-A7F7-4F0082DCC77A} = {3EEABEC3-EC4E-4E9F-A4CE-754B39D0299C}
 		{BDEFA0DA-7694-4A43-A24D-0CE33262BE34} = {3EEABEC3-EC4E-4E9F-A4CE-754B39D0299C}
+		{3CAC70BD-2287-400E-89D7-24B526D84C27} = {3EEABEC3-EC4E-4E9F-A4CE-754B39D0299C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4F5A16C-1F0B-474D-BE6A-7BAFC241CEA9}
