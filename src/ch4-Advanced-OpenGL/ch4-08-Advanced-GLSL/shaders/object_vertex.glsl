@@ -6,9 +6,14 @@ out VS_DATA {
     vec2 TexCoords;
 } vs_out;
 
+layout (std140) uniform Matrices
+{
+    uniform mat4 projection;
+    uniform mat4 view;
+};
+
 uniform mat4 model;
-uniform mat4 view;
-uniform mat4 projection;
+
 
 void main()
 {   

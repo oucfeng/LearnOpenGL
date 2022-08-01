@@ -33,6 +33,6 @@ public:
 	void set_uniform(std::string name, int count, bool transpose, const float* value) const noexcept;
 
 	void clear();
-private:
+
 	unsigned int ID;
 };

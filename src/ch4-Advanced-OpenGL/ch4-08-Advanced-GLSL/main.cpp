@@ -268,8 +268,31 @@ int main()
     // VAO 解绑
     glBindVertexArray(0);
 
-    Shader objectShader("shaders/object_vertex.glsl", "shaders/object_fragment.glsl");
     Shader skyboxShader("shaders/skybox_vertex.glsl", "shaders/skybox_fragment.glsl");
+
+    Shader shaderRed("shaders/object_vertex.glsl", "shaders/object_fragment.glsl");
+    Shader shaderGreen("shaders/object_vertex.glsl", "shaders/object_fragment.glsl");
+
+    unsigned int uniformBlockIndexRed = glGetUniformBlockIndex(shaderRed.ID, "Matrices");
+    unsigned int uniformBlockIndexGreen = glGetUniformBlockIndex(shaderGreen.ID, "Matrices");
+
+    if (uniformBlockIndexRed == GL_INVALID_INDEX || uniformBlockIndexGreen == GL_INVALID_INDEX)
+    {
+        std::cout << "glGetUniformBlockIndex Error!!! " << std::endl;
+    }
+    std::cout << "shaderID: " << shaderRed.ID << ", " << shaderGreen.ID << std::endl;
+    std::cout << "lockIndex: " << uniformBlockIndexRed << ", " << uniformBlockIndexGreen << std::endl;
+
+    glUniformBlockBinding(shaderRed.ID, uniformBlockIndexRed, 0);
+    glUniformBlockBinding(shaderGreen.ID, uniformBlockIndexGreen, 0);
+
+    unsigned int uboMatrices;
+    glGenBuffers(1, &uboMatrices);
+    glBindBuffer(GL_UNIFORM_BUFFER, uboMatrices);
+    glBufferData(GL_UNIFORM_BUFFER, 2 * sizeof(glm::mat4), NULL, GL_STATIC_DRAW);
+    glBindBuffer(GL_UNIFORM_BUFFER, 0);
+
+    glBindBufferRange(GL_UNIFORM_BUFFER, 0, uboMatrices, 0, 2 * sizeof(glm::mat4));
 
     // load textures
     // -------------
@@ -291,7 +314,16 @@ int main()
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LEQUAL);
-    glDisable(GL_CULL_FACE);
+
+    //common values
+    glm::mat4 model = glm::mat4(1.0f);
+    glm::mat4 view = glm::mat4(1.0f);
+    glm::mat4 projection = glm::mat4(1.0f);
+
+    projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / SCR_HEIGHT, 0.1f, 100.0f);
+    glBindBuffer(GL_UNIFORM_BUFFER, uboMatrices);
+    glBufferSubData(GL_UNIFORM_BUFFER, 0, sizeof(glm::mat4), glm::value_ptr(projection));
+    glBindBuffer(GL_UNIFORM_BUFFER, 0);
 
     // render loop
     // -----------
@@ -310,24 +342,20 @@ int main()
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        //common values
-        glm::mat4 model = glm::mat4(1.0f);
-        glm::mat4 view = glm::mat4(1.0f);
-        glm::mat4 projection = glm::mat4(1.0f);
-
         view = camera.GetViewMatrix();
-        projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / SCR_HEIGHT, 0.1f, 100.0f);
+        //projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / SCR_HEIGHT, 0.1f, 100.0f);
 
         // light start
-        glm::vec3 lightColor(1.0f);
+        //glm::vec3 lightColor(1.0f);
         //lightColor.x = sin(glfwGetTime() * 2.0f);
         //lightColor.y = sin(glfwGetTime() * 0.7f);
         //lightColor.z = sin(glfwGetTime() * 1.3f);
 
-        objectShader.use();
-        objectShader.set_uniform("cameraPos", camera.Position);
-        objectShader.set_uniform("view", 1, GL_FALSE, glm::value_ptr(view));
-        objectShader.set_uniform("projection", 1, GL_FALSE, glm::value_ptr(projection));
+        glBindBuffer(GL_UNIFORM_BUFFER, uboMatrices);
+        glBufferSubData(GL_UNIFORM_BUFFER, sizeof(glm::mat4), sizeof(glm::mat4), glm::value_ptr(view));
+        glBindBuffer(GL_UNIFORM_BUFFER, 0);
+
+        shaderRed.use();
 
         //cube1
         glBindVertexArray(cubeVAO);
@@ -335,17 +363,22 @@ int main()
         glBindTexture(GL_TEXTURE_2D, cubeTexture);
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, floorTexture);
-        objectShader.set_uniform("frontTexture", 0);
-        objectShader.set_uniform("backTexture", 1);
+        shaderRed.set_uniform("frontTexture", 0);
+        shaderRed.set_uniform("backTexture", 1);
 
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -1.0f));
-        objectShader.set_uniform("model", 1, GL_FALSE, glm::value_ptr(model));
+        model = glm::translate(model, glm::vec3(-0.75f, 0.75f, 0.0f));  // 移动到左上角
+        shaderRed.set_uniform("model", 1, GL_FALSE, glm::value_ptr(model));
+        shaderRed.set_uniform("view", 1, GL_FALSE, glm::value_ptr(view));
+        shaderRed.set_uniform("projection", 1, GL_FALSE, glm::value_ptr(projection));
         glDrawArrays(GL_TRIANGLES, 0, 36);
+
+        shaderGreen.use();
+
         //cube2
         model = glm::mat4(1.0f);
-        model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
-        objectShader.set_uniform("model", 1, GL_FALSE, glm::value_ptr(model));
+        model = glm::translate(model, glm::vec3(0.75f, 0.75f, 0.0f)); // move top-right
+        shaderGreen.set_uniform("model", 1, GL_FALSE, glm::value_ptr(model));
         glDrawArrays(GL_TRIANGLES, 0, 36);
 
         //plane
@@ -387,7 +420,8 @@ int main()
     glDeleteBuffers(1, &cubeVBO);
     glDeleteTextures(1, &cubeTexture);
     glDeleteTextures(1, &floorTexture);
-    objectShader.clear();
+    shaderRed.clear();
+    shaderGreen.clear();
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------

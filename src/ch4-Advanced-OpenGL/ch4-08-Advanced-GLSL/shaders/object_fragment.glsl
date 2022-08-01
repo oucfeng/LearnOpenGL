@@ -10,10 +10,5 @@ uniform sampler2D backTexture;
 
 void main()
 {   
-//    FragColor = texture(texture1, TexCoords);
-
-    if(gl_FrontFacing)
-        FragColor = texture(frontTexture, vs_in.TexCoords);
-    else
-        FragColor = texture(backTexture, vs_in.TexCoords); 
+    FragColor = texture(frontTexture, vs_in.TexCoords);
 }
