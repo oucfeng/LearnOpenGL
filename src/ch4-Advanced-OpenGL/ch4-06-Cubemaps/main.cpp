@@ -291,6 +291,7 @@ int main()
     unsigned int cubemapTexture = loadCubemap(faces);
 
     glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LEQUAL);
 
     // render loop
     // -----------
@@ -316,20 +317,6 @@ int main()
         view = camera.GetViewMatrix();
         projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / SCR_HEIGHT, 0.1f, 100.0f);
 
-        glDepthMask(GL_FALSE);
-        skyboxShader.use();
-        skyboxShader.set_uniform("model", 1, GL_FALSE, glm::value_ptr(model));
-        glm::mat4 skyboxView = glm::mat4(glm::mat3(camera.GetViewMatrix()));
-        //skyboxView = camera.GetViewMatrix();
-        skyboxShader.set_uniform("view", 1, GL_FALSE, glm::value_ptr(skyboxView));
-        skyboxShader.set_uniform("projection", 1, GL_FALSE, glm::value_ptr(projection));
-        skyboxShader.set_uniform("skybox", 0);
-        glBindVertexArray(skyboxVAO);
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-
-        glDepthMask(GL_TRUE);
         // light start
         glm::vec3 lightColor(1.0f);
         //lightColor.x = sin(glfwGetTime() * 2.0f);
@@ -362,6 +349,18 @@ int main()
         //glDrawArrays(GL_TRIANGLES, 0, 6);
         //glBindVertexArray(0);
 
+        // skybox
+        skyboxShader.use();
+        skyboxShader.set_uniform("model", 1, GL_FALSE, glm::value_ptr(model));
+        glm::mat4 skyboxView = glm::mat4(glm::mat3(camera.GetViewMatrix()));
+        //skyboxView = camera.GetViewMatrix();
+        skyboxShader.set_uniform("view", 1, GL_FALSE, glm::value_ptr(skyboxView));
+        skyboxShader.set_uniform("projection", 1, GL_FALSE, glm::value_ptr(projection));
+        skyboxShader.set_uniform("skybox", 0);
+        glBindVertexArray(skyboxVAO);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
 
         // glBindVertexArray(0); // no need to unbind it every time 
 
