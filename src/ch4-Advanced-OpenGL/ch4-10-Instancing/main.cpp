@@ -147,6 +147,7 @@ int main()
     glBindVertexArray(0);
 
     Shader objectShader("shaders/object_vertex.glsl", "shaders/object_fragment.glsl");
+    Shader planetShader("shaders/planet_vertex.glsl", "shaders/planet_fragment.glsl");
     Shader modelShader("shaders/model_vertex.glsl", "shaders/model_fragment.glsl");
 
     std::string planetPath = "../../../res/models/planet/planet.obj";
@@ -162,7 +163,7 @@ int main()
     glm::mat4 view = glm::mat4(1.0f);
     glm::mat4 projection = glm::mat4(1.0f);
 
-    unsigned int amount = 1000;
+    unsigned int amount = 30000;
     glm::mat4* modelMatrices;
     modelMatrices = new glm::mat4[amount];
     srand(static_cast<unsigned int>(glfwGetTime())); // initialize random seed
@@ -194,6 +195,36 @@ int main()
         modelMatrices[i] = model;
     }
 
+    unsigned int instanceVBO;
+    glGenBuffers(1, &instanceVBO);
+    glBindBuffer(GL_ARRAY_BUFFER, instanceVBO);
+    glBufferData(GL_ARRAY_BUFFER, amount * sizeof(glm::mat4), &modelMatrices[0], GL_STATIC_DRAW);
+
+    //auto meshes = rockModel.meshes;
+    for (int i = 0; i < rockModel.meshes.size(); i++)
+    {
+        glBindVertexArray(rockModel.meshes[i].VAO);
+        // ¶¥µãÊôÐÔ
+        GLsizei vec4Size = sizeof(glm::vec4);
+        glEnableVertexAttribArray(3);
+        glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (void*)0);
+        glEnableVertexAttribArray(4);
+        glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (void*)(vec4Size));
+        glEnableVertexAttribArray(5);
+        glVertexAttribPointer(5, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (void*)(2 * vec4Size));
+        glEnableVertexAttribArray(6);
+        glVertexAttribPointer(6, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (void*)(3 * vec4Size));
+
+        glVertexAttribDivisor(3, 1);
+        glVertexAttribDivisor(4, 1);
+        glVertexAttribDivisor(5, 1);
+        glVertexAttribDivisor(6, 1);
+
+        glBindVertexArray(0);
+    }
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+
     // render loop
     // -----------
     while (!glfwWindowShouldClose(window))
@@ -220,21 +251,24 @@ int main()
         //lightColor.y = sin(glfwGetTime() * 0.7f);
         //lightColor.z = sin(glfwGetTime() * 1.3f);
 
-        modelShader.use();
+        planetShader.use();
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, -3.0f, 0.0f));
         model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
-        modelShader.set_uniform("model", 1, GL_FALSE, glm::value_ptr(model));
+        planetShader.set_uniform("model", 1, GL_FALSE, glm::value_ptr(model));
+        planetShader.set_uniform("view", 1, GL_FALSE, glm::value_ptr(view));
+        planetShader.set_uniform("projection", 1, GL_FALSE, glm::value_ptr(projection));
+        planetModel.Draw(planetShader);
+
+        modelShader.use();
         modelShader.set_uniform("view", 1, GL_FALSE, glm::value_ptr(view));
         modelShader.set_uniform("projection", 1, GL_FALSE, glm::value_ptr(projection));
-        planetModel.Draw(modelShader);
-
-        for (int i = 0; i < amount; i++)
+        for (int i = 0; i < rockModel.meshes.size(); i++)
         {
-            modelShader.set_uniform("model", 1, GL_FALSE, glm::value_ptr(modelMatrices[i]));
-            rockModel.Draw(modelShader);
+            glBindVertexArray(rockModel.meshes[i].VAO);
+            glDrawElementsInstanced(GL_TRIANGLES, static_cast<unsigned int>(rockModel.meshes[i].indices.size()), GL_UNSIGNED_INT, 0, amount);
+            glBindVertexArray(0);
         }
-        
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
@@ -245,6 +279,8 @@ int main()
     // optional: de-allocate all resources once they've outlived their purpose:
     // ------------------------------------------------------------------------
 
+    objectShader.clear();
+    planetShader.clear();
     modelShader.clear();
 
     // glfw: terminate, clearing all previously allocated GLFW resources.

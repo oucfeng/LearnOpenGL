@@ -21,6 +21,9 @@ struct Texture {
 
 class Mesh {
 public:
+    /*  渲染数据  */
+    unsigned int VAO, VBO, EBO;
+
     /*  网格数据  */
     vector<Vertex> vertices;
     vector<unsigned int> indices;
@@ -31,8 +34,7 @@ public:
     void Draw(Shader& shader);
     void Release();
 private:
-    /*  渲染数据  */
-    unsigned int VAO, VBO, EBO;
+    
     /*  函数  */
     void SetupMesh();
 };

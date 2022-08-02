@@ -8,6 +8,8 @@
 class Model
 {
 public:
+    vector<Mesh> meshes;
+
     /*  函数   */
     Model(const char* path)
     {
@@ -16,7 +18,6 @@ public:
     void Draw(Shader& shader);
 private:
     /*  模型数据  */
-    vector<Mesh> meshes;
     string directory;
     vector<Texture> textures_loaded;
 
