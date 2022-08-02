@@ -124,6 +124,20 @@ int main()
          0.05f, -0.05f,  0.0f, 1.0f, 0.0f,
          0.05f,  0.05f,  0.0f, 1.0f, 1.0f
     };
+
+    glm::vec2 translations[100];
+    glm::vec2 translation;
+    int index = 0;
+    float offset = 0.1f;
+    for (int y = -10; y < 10; y += 2)
+    {
+        for (int x = -10; x < 10; x += 2)
+        {
+            translation.x = (float)x / 10.0f + offset;
+            translation.y = (float)y / 10.0f + offset;
+            translations[index++] = translation;
+        }
+    }
     
     unsigned int quadVAO;
     glGenVertexArrays(1, &quadVAO);
@@ -131,16 +145,28 @@ int main()
     unsigned int quadVBO;
     glGenBuffers(1, &quadVBO);
 
+    unsigned int instanceVBO;
+    glGenBuffers(1, &instanceVBO);
+
     // 绑定VAO，接下来所有对VBO、EBO的设置都会保存到该VAO中
     glBindVertexArray(quadVAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(2 * sizeof(float)));
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(2 * sizeof(float)));
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+    glBindBuffer(GL_ARRAY_BUFFER, instanceVBO);
+    glBufferData(GL_ARRAY_BUFFER, 100 * sizeof(glm::vec2), &translations[0], GL_STATIC_DRAW);
+    
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(glm::vec2), (void*)0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glVertexAttribDivisor(2, 1);
 
     // VAO 解绑
     glBindVertexArray(0);
@@ -156,27 +182,6 @@ int main()
     glm::mat4 model = glm::mat4(1.0f);
     glm::mat4 view = glm::mat4(1.0f);
     glm::mat4 projection = glm::mat4(1.0f);
-
-    glm::vec2 translations[100];
-    glm::vec2 translation;
-    int index = 0;
-    float offset = 0.1f;
-    for (int y = -10; y < 10; y+=2)
-    {
-        for (int x = -10; x < 10; x+=2)
-        {
-            translation.x = (float)x / 10.0f + offset;
-            translation.y = (float)y / 10.0f + offset;
-            translations[index++] = translation;
-        }
-    }
-
-    objectShader.use();
-    for (int i = 0; i < 100; i++)
-    {
-        std:string idx = std::to_string(i);
-        objectShader.set_uniform(("offset[" + idx + "]").c_str(), translations[i]);
-    }
 
     // render loop
     // -----------
@@ -204,7 +209,7 @@ int main()
         //lightColor.y = sin(glfwGetTime() * 0.7f);
         //lightColor.z = sin(glfwGetTime() * 1.3f);
 
-        
+        objectShader.use();
         model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, -2.4f, 1.0f)); // translate it down so it's at the center of the scene
         model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));	// it's a bit too big for our scene, so scale it down
