@@ -26,6 +26,7 @@ float ShadowCalculation(vec4 fragPosLightSpace, vec3 normal, vec3 lightDir)
     float currentDepth = projCoords.z;
     // 检查当前片段是否在阴影中
     float bias = max(0.05 * (1.0 - dot(normal, lightDir)), 0.005);
+    bias = 0;
     float shadow = currentDepth - bias > closestDepth  ? 1.0 : 0.0;
 
     return shadow;
