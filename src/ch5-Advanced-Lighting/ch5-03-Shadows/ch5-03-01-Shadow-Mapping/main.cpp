@@ -185,15 +185,9 @@ int main()
         glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
         glClear(GL_DEPTH_BUFFER_BIT);
 
-        //先开启剔除，才能设置剔除正面或背面
-        glEnable(GL_CULL_FACE);
-        glCullFace(GL_FRONT);
-
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, woodTexture);
         renderScene(depthShader);
-        glCullFace(GL_BACK);
-        glDisable(GL_CULL_FACE);
         
         //利用深度贴图渲染场景+阴影
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
