@@ -192,7 +192,7 @@ void Shader::set_uniform(std::string name, glm::vec4 vec4) const noexcept
     set_uniform(name, vec4.x, vec4.y, vec4.z, vec4.w);
 }
 
-void Shader::set_uniform(std::string name, glm::mat4 mat4) const noexcept
+void Shader::set_uniform(std::string name, glm::mat4& mat4) const noexcept
 {
     set_uniform(name, 1, GL_FALSE, glm::value_ptr(mat4));
 }

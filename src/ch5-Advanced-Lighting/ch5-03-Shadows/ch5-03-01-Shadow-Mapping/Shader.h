@@ -32,7 +32,7 @@ public:
 	void set_uniform(std::string name, glm::vec2 vec2) const noexcept;
 	void set_uniform(std::string name, glm::vec3 vec3) const noexcept;
 	void set_uniform(std::string name, glm::vec4 vec4) const noexcept;
-	void set_uniform(std::string name, glm::mat4 mat4) const noexcept;
+	void set_uniform(std::string name, glm::mat4& mat4) const noexcept;
 	void set_uniform(std::string name, int count, bool transpose, const float* value) const noexcept;
 
 	void clear();

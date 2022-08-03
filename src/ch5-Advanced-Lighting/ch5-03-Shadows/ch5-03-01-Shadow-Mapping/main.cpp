@@ -22,10 +22,7 @@ bool firstMouse = true;
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 
-bool blinn = false;
-bool blinnKeyPressed = false;
-
-glm::vec3 cameraPos = glm::vec3(0.0f, 1.0f, 3.0f);
+glm::vec3 cameraPos = glm::vec3(0.0f, 2.0f, 10.0f);
 Camera camera(cameraPos);
 
 void renderScene(const Shader& shader);
@@ -55,16 +52,6 @@ void processInput(GLFWwindow* window)
         camera.ProcessKeyboard(LEFT, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         camera.ProcessKeyboard(RIGHT, deltaTime);
-    
-    if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS && !blinnKeyPressed)
-    {
-        blinn = !blinn;
-        blinnKeyPressed = true;
-    }
-    if (glfwGetKey(window, GLFW_KEY_B) == GLFW_RELEASE)
-    {
-        blinnKeyPressed = false;
-    }
 }
 
 void mouse_callback(GLFWwindow* window, double xpos, double ypos)
@@ -179,6 +166,7 @@ int main()
         // -----
         processInput(window);
 
+        glEnable(GL_DEPTH_TEST);
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -190,7 +178,7 @@ int main()
         depthShader.use();
         depthShader.set_uniform("lightSpaceMatrix", lightSpaceMatrix);
 
-        // render 先渲染到深度贴图上
+        //render 先渲染到深度贴图上
         glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
         glViewport(0, 0, SHADOW_WIDTH, SHADOW_HEIGHT);
         glClear(GL_DEPTH_BUFFER_BIT);
@@ -199,15 +187,32 @@ int main()
         glBindTexture(GL_TEXTURE_2D, woodTexture);
         renderScene(depthShader);
         
-        // 渲染到2d屏幕
+        //利用深度贴图渲染场景+阴影
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
         glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
         glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-        quadShader.use();
-        quadShader.set_uniform("depthMap", 0);
+
+        view = camera.GetViewMatrix();
+        projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / SCR_HEIGHT, 1.0f, 100.0f);
+
+        objectShader.use();
+        objectShader.set_uniform("view", view);
+        objectShader.set_uniform("projection", projection);
+        objectShader.set_uniform("viewPos", camera.Position);
+        objectShader.set_uniform("lightPos", lightPos);
+        objectShader.set_uniform("lightSpaceMatrix", lightSpaceMatrix);
+        
         glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, woodTexture);
+        glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, depthMapTexture);
-        renderQuad();
+        objectShader.set_uniform("diffuseTexture", 0);
+        objectShader.set_uniform("shadowMap", 1);
+
+        renderScene(objectShader);
+        //renderQuad();
+
+        //std::cout << "rendering!! " << std::endl;
 
         //// render
         //glDepthFunc(GL_LESS);
@@ -424,7 +429,7 @@ void renderQuad()
         glGenBuffers(1, &quadVBO);
         glBindVertexArray(quadVAO);
         glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), quadVertices, GL_STATIC_DRAW);
         glEnableVertexAttribArray(0);
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
         glEnableVertexAttribArray(1);
