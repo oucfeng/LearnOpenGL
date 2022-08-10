@@ -167,6 +167,14 @@ int main()
         objectShader.set_uniform("normalMap", 1);
 
         renderQuad();
+
+        // render light source (simply re-renders a smaller plane at the light's position for debugging/visualization)
+        model = glm::mat4(1.0);
+        model = glm::translate(model, lightPos);
+        model = glm::scale(model, glm::vec3(0.1f));
+        objectShader.set_uniform("model", model);
+        renderQuad();
+
         //renderQuad();
 
         //std::cout << "rendering!! " << std::endl;
