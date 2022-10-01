@@ -133,13 +133,13 @@ int main()
     
     // load textures
    // -------------
-    std::string diffusePath = "../../../res/textures/bricks2.jpg";
+    std::string diffusePath = "../../../res/textures/wood.png";
     unsigned int diffuseTexture = loadTexture(diffusePath.c_str());
 
-    std::string normalPath = "../../../res/textures/bricks2_normal.jpg";
+    std::string normalPath = "../../../res/textures/toy_box_normal.png";
     unsigned int normalTexture = loadTexture(normalPath.c_str());
 
-    std::string heightPath = "../../../res/textures/bricks2_disp.jpg";
+    std::string heightPath = "../../../res/textures/toy_box_disp.png";
     unsigned int heightTexture = loadTexture(heightPath.c_str());
 
     //glEnable(GL_DEPTH_TEST);
