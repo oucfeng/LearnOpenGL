@@ -83,6 +83,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch5-05-Parallax-Mapping", "
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch5-06-HDR", "src\ch5-Advanced-Lighting\ch5-06-HDR\ch5-06-HDR.vcxproj", "{A3868CD9-8EEB-47A9-AC65-B17A1832C218}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch5-07-Bloom", "src\ch5-Advanced-Lighting\ch5-07-Bloom\ch5-07-Bloom.vcxproj", "{A762F14A-A13D-43BE-AC21-18CFF7AF9A36}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -363,6 +365,14 @@ Global
 		{A3868CD9-8EEB-47A9-AC65-B17A1832C218}.Release|x64.Build.0 = Release|x64
 		{A3868CD9-8EEB-47A9-AC65-B17A1832C218}.Release|x86.ActiveCfg = Release|Win32
 		{A3868CD9-8EEB-47A9-AC65-B17A1832C218}.Release|x86.Build.0 = Release|Win32
+		{A762F14A-A13D-43BE-AC21-18CFF7AF9A36}.Debug|x64.ActiveCfg = Debug|x64
+		{A762F14A-A13D-43BE-AC21-18CFF7AF9A36}.Debug|x64.Build.0 = Debug|x64
+		{A762F14A-A13D-43BE-AC21-18CFF7AF9A36}.Debug|x86.ActiveCfg = Debug|Win32
+		{A762F14A-A13D-43BE-AC21-18CFF7AF9A36}.Debug|x86.Build.0 = Debug|Win32
+		{A762F14A-A13D-43BE-AC21-18CFF7AF9A36}.Release|x64.ActiveCfg = Release|x64
+		{A762F14A-A13D-43BE-AC21-18CFF7AF9A36}.Release|x64.Build.0 = Release|x64
+		{A762F14A-A13D-43BE-AC21-18CFF7AF9A36}.Release|x86.ActiveCfg = Release|Win32
+		{A762F14A-A13D-43BE-AC21-18CFF7AF9A36}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -403,6 +413,7 @@ Global
 		{2DA7E3FA-73DE-4340-9B18-C93112F5C4E4} = {E2D7F090-17CD-45B5-97ED-D67B14445D65}
 		{9D68BBF9-F655-4BA9-83F6-BDAA95D98957} = {E2D7F090-17CD-45B5-97ED-D67B14445D65}
 		{A3868CD9-8EEB-47A9-AC65-B17A1832C218} = {E2D7F090-17CD-45B5-97ED-D67B14445D65}
+		{A762F14A-A13D-43BE-AC21-18CFF7AF9A36} = {E2D7F090-17CD-45B5-97ED-D67B14445D65}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4F5A16C-1F0B-474D-BE6A-7BAFC241CEA9}
